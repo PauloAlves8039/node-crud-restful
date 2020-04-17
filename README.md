@@ -3,7 +3,7 @@
 ## :computer: Projeto
 Repositório de uma aplicação para representar um CRUD utilizando Node.Js, Express.js e MongoDb.
 Código fonte do projeto foi baseado no tutorial 
-[Tutorial: CRUD API RESTful com: Node + Express +.MongoDb](https://www.youtube.com/watch?v=qwgDzi8TGco&list=PLb2HQ45KP0WstF2TXsreWRv-WUr5tqzy1).
+[CRUD API RESTful com: Node + Express + MongoDb](https://www.youtube.com/watch?v=qwgDzi8TGco&list=PLb2HQ45KP0WstF2TXsreWRv-WUr5tqzy1).
 
 ## :wrench: Recursos Utilizados
 - Visual Studio Code v1.44.1
