@@ -151,6 +151,20 @@ router.route('/produtos/:produto_id')
 })
 
 /**
+ * @function put - responsável por exlcuir determinado produto por id. 
+ * @example - acessar rota em: DELETE http://localhost:8000/api/produtos/:produto_id
+ */
+.delete(function(req, res){
+    Produto.deleteOne({_id: req.params.produto_id}, function(error){
+        if(error){
+            res.send('Erro ao selecionar produto por id: ' + error)
+        }else{
+            res.json({ message: 'Produto excluído com sucesso!' })
+        }
+    })
+})
+
+/**
  * @param use - define o uso padrão das rotas. 
  */
 app.use('/api', router)
