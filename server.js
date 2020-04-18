@@ -117,13 +117,36 @@ router.route('/produtos/:produto_id')
  * @function get - responsável por selecionar determinado produto por id. 
  * @example - acessar rota em: GET http://localhost:8000/api/produtos/:produto_id
  */
-.get(function (req, res){
+.get(function(req, res){
     Produto.findById(req.params.produto_id, function(error, produto){
         if(error){
             res.send('Erro ao selecionar produto por id: ' + error)
         }else{
             res.json(produto)
         }
+    })
+})
+
+/**
+ * @function put - responsável por atualizar determinado produto por id. 
+ * @example - acessar rota em: PUT http://localhost:8000/api/produtos/:produto_id
+ */
+.put(function(req, res){
+    Produto.findById(req.params.produto_id, function(error, produto){
+        if(error)
+            res.send('Erro ao selecionar produto por id: ' + error)
+        
+            produto.nome = req.body.nome
+            produto.preco = req.body.preco
+            produto.descricao = req.body.descricao
+
+            produto.save(function(error){
+                if(error){
+                    res.send('Erro ao atualizar produto: ' + error)
+                }else{
+                    res.json({ message: 'Produto atualizado com sucesso!' })
+                }
+            })
     })
 })
 
