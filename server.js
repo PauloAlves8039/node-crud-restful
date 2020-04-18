@@ -70,7 +70,7 @@ router.get('/', function(req, res){
 })
 
 /**
- * @param route - parâmetro responsável definir as rotas terminadas com 'produtos' (GET ALL & POST).
+ * @param route - parâmetro responsável definir as rotas terminadas com '/produtos' (GET ALL & POST).
  */
 router.route('/produtos')
 
@@ -104,6 +104,25 @@ router.route('/produtos')
             res.send('Erro ao tentar selecionar produtos: ' + error)
         }else{
             res.json(produtos)
+        }
+    })
+})
+
+/**
+ * @param route - parâmetro responsável definir as rotas terminadas com '/produtos/:produto_id' (GET, PUT & DELETE: id).
+ */
+router.route('/produtos/:produto_id')
+
+/**
+ * @function get - responsável por selecionar determinado produto por id. 
+ * @example - acessar rota em: GET http://localhost:8000/api/produtos/:produto_id
+ */
+.get(function (req, res){
+    Produto.findById(req.params.produto_id, function(error, produto){
+        if(error){
+            res.send('Erro ao selecionar produto por id: ' + error)
+        }else{
+            res.json(produto)
         }
     })
 })
