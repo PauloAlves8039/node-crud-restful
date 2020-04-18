@@ -95,6 +95,20 @@ router.route('/produtos')
 })
 
 /**
+ * @function get - responsável por selecionar todos os produtos. 
+ * @example - acessar rota em: GET http://localhost:8000/api/produtos
+ */
+.get(function(req, res){
+    Produto.find(function(error, produtos){
+        if(error){
+            res.send('Erro ao tentar selecionar produtos: ' + error)
+        }else{
+            res.json(produtos)
+        }
+    })
+})
+
+/**
  * @param use - define o uso padrão das rotas. 
  */
 app.use('/api', router)
