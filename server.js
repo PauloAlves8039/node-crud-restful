@@ -21,6 +21,21 @@ var app = express()
 var bodyParser = require('body-parser')
 
 /**
+ * @param {mongoose} mongoose - parâmetro responsável pela adição do 'mongoose'. 
+ */
+var mongoose = require('mongoose')
+
+/**
+ * @param {Produto} Produto - parâmetro responsável pela adição da entidade 'produto'. 
+ */
+var Produto = require('./app/models/produto')
+
+/**
+ * @param connect - parâmetro responsável pela conexão com o banco de dados local 'mongodb'
+ */
+mongoose.connect('mongodb://localhost:27017/node-crud-api', { useNewUrlParser: true, useUnifiedTopology: true })
+
+/**
  * Configurando a variável app para uso do 'body-parser'
  */
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -32,12 +47,20 @@ app.use(bodyParser.json())
 var port = process.env.port || 8000
 
 /**
- *  @param {Router} router - parâmetro responsável pela definição de rota. 
+ *  @param {Router} router - parâmetro responsável pela definição das rotas. 
  */
 var router = express.Router()
 
 /**
- * Função responsável por realizar teste inicial de execução da api
+ * Middleware responsável sinalizar através de mensagem o uso das requisões da api. 
+ */
+router.use(function(req, res, next){
+    console.log('Requisição em execução!')
+    next()    
+})
+
+/**
+ * Middleware responsável por realizar teste inicial de execução da api
  * 
  * @param req - responsável por executar requisão.
  * @param res - responsável por executar resposta.
