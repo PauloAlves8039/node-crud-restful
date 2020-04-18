@@ -60,13 +60,38 @@ router.use(function(req, res, next){
 })
 
 /**
- * Middleware responsável por realizar teste inicial de execução da api
+ * Função responsável por realizar teste inicial de execução da api.
  * 
  * @param req - responsável por executar requisão.
  * @param res - responsável por executar resposta.
  */
 router.get('/', function(req, res){
     res.json({message: 'Bem vindo(a) a nossa loja!'})
+})
+
+/**
+ * @param route - parâmetro responsável definir as rotas terminadas com 'produtos' (GET ALL & POST).
+ */
+router.route('/produtos')
+
+/**
+ * @function post - responsável por cadastrar produto. 
+ * @example - acessar rota em: POST http://localhost:8000/api/produtos
+ */
+.post(function(req, res){
+    var produto = new Produto()
+
+    produto.nome = req.body.nome
+    produto.preco = req.body.preco
+    produto.descricao = req.body.descricao
+
+    produto.save(function(error){
+        if(error){
+            res.send('Erro ao salvar o produto: ' + error)
+        }else{
+            res.json({ message: 'Produto cadastrado com sucesso!' })
+        }
+    })
 })
 
 /**
